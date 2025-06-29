@@ -1,2 +1,1 @@
-# ITR-repo
-XYZ 123
+Just an overview of git repo 
