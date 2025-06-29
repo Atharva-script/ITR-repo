@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>BrightWorks Registration</title>
+
+  <!-- Bootstrap & Fonts -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+      background: transparent;
+      font-family: 'Poppins', sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .popup-wrapper {
+      background-color: #ffffff;
+      border-radius: 16px;
+      padding: 25px 30px;
+      width: 100%;
+      max-width: 600px;
+      overflow-y: auto;
+      max-height: 95vh;
+    }
+
+    h2 {
+      font-size: 22px;
+      font-weight: 600;
+      text-align: center;
+      margin-bottom: 25px;
+    }
+
+    .form-label {
+      font-weight: 600;
+    }
+
+    .form-control {
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+      border-radius: 10px;
+    }
+
+    .form-control:focus {
+      border-color: #198754;
+      box-shadow: 0 0 10px rgba(25, 135, 84, 0.4);
+    }
+
+    .btn-submit {
+      background: #198754;
+      color: #fff;
+      font-weight: bold;
+      border: none;
+      padding: 10px;
+      border-radius: 12px;
+      letter-spacing: 0.5px;
+      box-shadow: 0 4px 10px rgba(25, 135, 84, 0.3);
+      transition: all 0.3s ease;
+    }
+
+    .btn-submit:hover {
+      background: #145c39;
+      transform: scale(1.05);
+      filter: blur(0.2px);
+    }
+
+    iframe {
+      border: 0;
+      width: 100%;
+      height: 300px;
+      border-radius: 10px;
+      margin-top: 10px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    }
+
+    .form-footer {
+      text-align: center;
+      margin-top: 20px;
+      font-size: 14px;
+    }
+
+    .form-footer a {
+      color: #0d6efd;
+      text-decoration: none;
+      font-weight: 500;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+<!-- Centered Register Form -->
+<div class="popup-wrapper">
+  <h2>Registration Form</h2>
+
+  <form id="regForm">
+    <div class="mb-3">
+      <label class="form-label">First Name</label>
+      <input type="text" class="form-control" required>
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Last Name</label>
+      <input type="text" class="form-control" required>
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Gender</label><br/>
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="gender" required>
+        <label class="form-check-label">Male</label>
+      </div>
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="gender" required>
+        <label class="form-check-label">Female</label>
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Phone Number (India)</label>
+      <input type="tel" class="form-control" pattern="^[789]\d{9}$" required>
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Email</label>
+      <input type="email" class="form-control" pattern="^[\\w.-]+@[a-zA-Z]+\\.[a-zA-Z]{2,}$" required>
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Password</label>
+      <input type="password" class="form-control"
+        pattern="^(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*#?&])[A-Za-z\\d@$!%*#?&]{8,}$"
+        title="Min 8 chars, 1 capital, 1 number, 1 special character"
+        required>
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Your Location</label>
+      <iframe
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3770.8786408382864!2d72.87765577482645!3d19.07123435257961!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7b805da52bbfd%3A0x88917e3e061abefa!2sBandra%20Kurla%20Complex!5e0!3m2!1sen!2sin!4v1686983189574!5m2!1sen!2sin"
+        allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+      </iframe>
+    </div>
+
+    <button type="submit" class="btn btn-submit w-100 mt-3">Submit</button>
+  </form>
+
+  <div class="form-footer" >
+    Already a user? <a class='text-primary' onclick="openLogin()">Log in now</a>
+  </div>
+</div>
+
+<!-- JS -->
+<script>
+  document.getElementById("regForm").addEventListener("submit", function(e) {
+    e.preventDefault();
+    if (this.checkValidity()) {
+      alert("✅ Form submitted successfully!");
+    } else {
+      alert("⚠️ Please fill out all fields correctly.");
+    }
+  });
+
+  function openLogin() {
+    window.parent.postMessage("openLoginPopup", "*");
+  }
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
